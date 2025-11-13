@@ -1,4 +1,3 @@
-== Ordered Stack-List of People (C Implementation) ==
 # Overview
 
 This project demonstrates the importance and applications of stacks and ordered lists in the C programming language.
