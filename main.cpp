@@ -53,3 +53,4 @@ void inserirOrdenado(Pessoa **inicio, Pessoa *nova) {
         atual->prox = nova;     
     }
 }
+
