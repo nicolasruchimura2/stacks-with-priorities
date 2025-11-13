@@ -54,3 +54,50 @@ void inserirOrdenado(Pessoa **inicio, Pessoa *nova) {
     }
 }
 
+void removerPessoa(Pessoa **inicio) {
+    if (*inicio == NULL) {
+        printf("Lista vazia, nada a remover.\n");    
+        return;
+    }
+
+    Pessoa *temp = *inicio;
+    *inicio = (*inicio)->prox;
+    free(temp);
+}
+
+void mostrarLista(Pessoa *inicio) {
+    Pessoa *atual = inicio;
+    while(atual != NULL) {
+        printf("BI: %s, Nome: %s, Apelido: %s, Data de Nascimento: %02d/%02d/%04d\n",
+               atual->BI, atual->nome, atual->apelido,
+               atual->data_nascimento.dia,
+               atual->data_nascimento.mes,
+               atual->data_nascimento.ano);
+        atual = atual->prox;
+    }
+    printf("--------------------------\n");
+}
+
+int main() { 
+    Pessoa *lista = NULL;
+
+    inserirOrdenado(&lista, criarPessoa("12345678", "Joao", "Silva", 10, 5, 1990));
+    inserirOrdenado(&lista, criarPessoa("87654321", "Ana", "Costa", 3, 8, 1985));
+    inserirOrdenado(&lista, criarPessoa("87654321", "Ana", "Almeida", 5, 2, 1981));
+    inserirOrdenado(&lista, criarPessoa("55555555", "Bruno", "Almeida", 20, 12, 1992));
+    inserirOrdenado(&lista, criarPessoa("11111111", "Carla", "Costa", 1, 1, 1991));
+
+    printf("Lista de Pessoas:\n");
+    mostrarLista(lista);
+
+    printf("Removendo a primeira pessoa da lista...\n");
+    removerPessoa(&lista);
+    mostrarLista(lista);
+
+    // Liberar memória restante
+    while (lista != NULL) {
+        removerPessoa(&lista);
+    }
+
+    return 0;
+}
